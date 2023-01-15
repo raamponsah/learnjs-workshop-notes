@@ -1,0 +1,24 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Darkmode from 'darkmode-js';
+
+new Darkmode().showWidget();
+interface Props {
+  title: String;
+}
+const { title = "Learn the Web Notes" } = Astro.props as Props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead title={title} />
+  </head>
+  <body>
+    <slot name="sidebar" />
+
+    <slot />
+
+  
+  </body>
+</html>

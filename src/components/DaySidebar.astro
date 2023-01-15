@@ -1,0 +1,79 @@
+---
+import FileIcon from "./FileIcon.astro";
+import FolderIcon from "./FolderIcon.astro";
+import HeaderNavigation from "./HeaderNavigation.astro";
+
+import '../assets/css/style.css'
+import Footer from "./Footer.astro";
+interface Item {
+  title: String;
+  link: String;
+  frontmatter: any;
+}
+const { navItems, subNavItems, logoText } = Astro.props;
+const subNavItemsSet = subNavItems.filter((item: Item)=>item.frontmatter.block != undefined)
+---
+
+<section class="sidebar">
+  <h1>{logoText}</h1>
+  <HeaderNavigation />
+  <nav>
+    <ul>
+      <li><small>Navigation</small></li>
+      {
+        navItems.map((item: Item) => {
+          return (
+
+            <li class="nav-item">
+              <a
+                href="#"
+              >
+                <FolderIcon/>
+                {item.frontmatter.title}
+
+              </a>
+              
+              
+              {subNavItems.length > 0?
+                <ul class={`subitems invisible`} >
+                   {subNavItemsSet.map((subItem: Item)=>{
+                    if (subItem.frontmatter.day == item.frontmatter.day) 
+                      return <li class="sub-nav-item"><a href={`/notes/${subItem.frontmatter.day}/${subItem.frontmatter.block}`}>
+                      <FileIcon/>
+                        {subItem.frontmatter.title}</a></li>
+                   })}
+                  </ul>
+              : null}
+            </li>
+          );
+        })
+      }
+    </ul>
+  </nav>
+  <Footer/>
+
+
+</section>
+
+
+<style>
+  .visible{
+    display:block
+  }
+
+  .invisible{
+    display:none
+  }
+
+</style>
+
+
+<script is:inline>
+  const navItems = document.querySelectorAll('.nav-item');
+  for (const navItem of navItems) {
+    navItem.addEventListener('click',(e) => {
+        navItem.lastElementChild.classList.toggle('invisible');
+    })
+  }
+</script>
+

@@ -1,0 +1,160 @@
+:root{
+  --color: #000;
+  --font: 'IBM Plex Sans', sans-serif;
+  /* font-size: 1rem; */
+}
+
+* {
+  box-sizing: border-box;
+  font-family: var(--font);
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2,h3,h4, h5, h6 {
+  margin:0.5rem 0;
+
+}
+p{
+  margin: 0.5em 0;
+ 
+}
+
+
+
+body {
+  min-width: 100%;
+  background: #fff;
+  display:grid;
+  grid-template-columns: 1fr auto;
+  gap:40px;	
+  position: relative;
+}
+
+section.sidebar {
+    background: #000b70;
+    padding: 1rem;
+    width: 20rem;
+    height: 100vh;
+    position: fixed;
+  
+
+  }
+
+  section.sidebar small {
+    color: #fff;
+    font-weight: 100;
+    text-transform: uppercase;
+  }
+
+  section.sidebar h1 {
+    color: #fff;
+    font-size: min(1rem, 5vw);
+    font-weight: 300;
+    margin: 0;
+  }
+
+  section.sidebar nav {
+    margin-top: 2rem;
+
+    height:80vh;
+    overflow-y: scroll;
+
+    scrollbar-width: none;
+    
+  }
+
+  section.sidebar nav ul {
+    padding: 0;
+    margin: 0;
+  }
+
+  section ul li {
+    list-style: none;
+    margin: 1rem 0;
+  }
+
+  section ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: min(0.85rem, 5vw);
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  section ul li ul.subitems{
+    margin-left:2rem;
+  }
+
+
+ 
+
+.visible{
+  display: block;
+}
+
+.invisible{
+  display: none;
+}
+
+li.sub-nav-item a{
+  font-size: 0.85rem;
+  text-transform: capitalize;
+}
+
+pre.astro-code {
+  padding: 1rem;
+  margin:1rem 0;
+  background: #3a343c;
+  position: relative;
+  border-radius: 10px;;
+  border-top: 0.5px solid teal;
+}
+
+.copy-button{
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgb(251, 2, 156);
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  color: white;
+  
+ 
+}
+
+@media only screen and (max-width:980px) {
+  .sidebar{
+    display: none;
+
+  }
+  main{
+    margin-left:0;
+  }
+}
+
+/* Style rules for dark mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: black;
+    color: white;
+  }
+
+  line{
+    stroke: white;
+  }
+}
+/* Style rules for light mode */
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: white;
+    color: black;
+  }
+
+  line{
+    stroke: black;
+  }
+}

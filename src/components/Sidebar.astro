@@ -1,0 +1,56 @@
+---
+import HeaderNavigation from "./HeaderNavigation.astro";
+import "../assets/css/style.css";
+import Footer from "./Footer.astro";
+interface Item {
+  title: String;
+  link: String;
+  frontmatter: any;
+}
+
+interface Link {
+  text: String;
+  url: Text;
+}
+
+const { navItems, logoText } = Astro.props;
+---
+
+<section class="sidebar">
+  <h1>{logoText}</h1>
+
+  <HeaderNavigation />
+  <nav>
+    <ul>
+      <li><small>Navigation</small></li>
+      {
+        navItems.map((item: Item) => {
+          return (
+            <li class="nav-item">
+              <a
+                href={
+                  Astro.request.url.split("/")[3] == "notes"
+                    ? `/notes/${item.frontmatter.day}/${item.frontmatter.block}`
+                    : `/${item.frontmatter.slug}`
+                }
+              >
+                {item.frontmatter.title}
+              </a>
+            </li>
+          );
+        })
+      }
+      <!-- 
+      {
+        customLinks.map((item) => {
+          return (
+            <li>
+              <a href={item.link}>{item.text}</a>
+            </li>
+          );
+        })
+      } -->
+    </ul>
+  </nav>
+  <Footer />
+</section>
